@@ -1,8 +1,11 @@
 const router = require('./router');
 const express = require('express');
+const cors = require('cors');
+
 
 const port = 3000;
-const service = express();
+const app = express();
+app.use(cors());
 
-service.use('/', router);
-service.listen(process.env.PORT || port, () => console.log(`Listening on port ${port}`));
+app.use('/', router);
+app.listen(process.env.PORT || port, () => console.log(`Listening on port ${port}`));
