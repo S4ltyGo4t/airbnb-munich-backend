@@ -17,9 +17,13 @@ router.get('/files', (req, res) => {
   res.send(allFiles('./../dataset/'))
 });
 
-router.get('/csv/:name', (req, res) => {
+
+router.get('/files/:filename', (req, res) => {
+  let filename = req.params.filename;
+  console.log(filename);
+
   let results = [];
-  let requestedFile = `./../dataset/${req.params.name}`
+  let requestedFile = `./../dataset/${filename}`;
   if (existsSync(requestedFile)) {
     createReadStream(requestedFile)
         .pipe(csv())
